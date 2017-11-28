@@ -24,7 +24,6 @@ shinyUI(
         numericInput("mu","Mu input",0),
         numericInput("mu_sd","Mu SD",0),
         numericInput("time_init","Tiempo Inicial",120),
-        numericInput("time_unit","Unidad de Tiempo",30),
         numericInput("prepper","Agregar Canales",1),
         selectInput("dist", "Distribucion:",
                     c("Normal" = "rnorm",

@@ -31,8 +31,8 @@ shinyServer(function(input, output, session) {
   
   observeEvent(input$go, {
     # Simmer para mm1
-    df <- callModule(simmergenerator, "plot-mm1", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$time_unit))
-    mu_l <- callModule(datafr, "simmer-mm1", reactive(df()), reactive(input$time_init), reactive(input$time_unit))
+    df <- callModule(simmergenerator, "plot-mm1", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$dist))
+    mu_l <- callModule(datafr, "simmer-mm1", reactive(df()), reactive(input$dist))
     
     output$server_plot <- renderPlot({
       plot(df(), "resources", "usage", "servidor", items="system")
@@ -60,11 +60,11 @@ shinyServer(function(input, output, session) {
     
     # Simmer para mmk
     
-    dfk <- callModule(simmergenerator, "plot-mmk", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$time_unit))
-    mu_lk <- callModule(datafr, "simmer-mmk", reactive(df()), reactive(input$time_init), reactive(input$time_unit))
+    dfk <- callModule(simmergenerator, "plot-mmk", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$dist))
+    mu_lk <- callModule(datafr, "simmer-mmk", reactive(dfk()), reactive(input$dist))
     
     output$server_plotk <- renderPlot({
-      plot(df(), "resources", "usage", "servidor", items="system")
+      plot(dfk(), "resources", "usage", "servidor", items="system")
     })
     
     mu1_simk <- mean(mu_lk()$Mu1, na.rm = TRUE)
@@ -88,8 +88,8 @@ shinyServer(function(input, output, session) {
     
     # Simmer para mg1
     
-    dfg <- callModule(simmergenerator, "plot-mmg", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$time_unit))
-    mu_lg <- callModule(datafr, "simmer-mmg", reactive(df()), reactive(input$time_init), reactive(input$time_unit))
+    dfg <- callModule(simmergenerator, "plot-mmg", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$dist))
+    mu_lg <- callModule(datafr, "simmer-mmg", reactive(dfg()), reactive(input$dist))
     
     output$server_plotg <- renderPlot({
       plot(dfg(), "resources", "usage", "servidor", items="system")
@@ -117,8 +117,8 @@ shinyServer(function(input, output, session) {
     
     # Simmer para mgk
     
-    dfgk <- callModule(simmergenerator, "plot-mmgk", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$time_unit))
-    mu_lgk <- callModule(datafr, "simmer-mmgk", reactive(df()), reactive(input$time_init), reactive(input$time_unit))
+    dfgk <- callModule(simmergenerator, "plot-mmgk", reactive(input$lambda), reactive(input$lambda_sd), reactive(input$mu), reactive(input$mu_sd), reactive(input$prepper), reactive(input$time_init), reactive(input$dist))
+    mu_lgk <- callModule(datafr, "simmer-mmgk", reactive(dfgk()), reactive(input$dist))
     
     output$server_plotgk <- renderPlot({
       plot(dfgk(), "resources", "usage", "servidor", items="system")
