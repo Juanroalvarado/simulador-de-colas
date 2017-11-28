@@ -1,0 +1,10 @@
+name: proyecto-simulador-fimal
+title:
+username:
+account: queuesimulator
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 240606
+bundleId: 1099199
+url: https://queuesimulator.shinyapps.io/proyecto-simulador-fimal/
+when: 1511801821.17719
